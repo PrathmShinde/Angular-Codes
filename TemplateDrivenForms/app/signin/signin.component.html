@@ -1,0 +1,22 @@
+<h2 class="heading p-3 ">Forms in Angular - Template Driven Form</h2>
+
+<div class="container">
+    <form #signInForm="ngForm" (ngSubmit)="loginUser(signInForm);">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="emailAddress" ngModel email required #emailAddress="ngModel"
+                aria-describedby="emailHelp">
+            <div class="form-text" *ngIf="emailAddress.touched && !emailAddress.valid">Enter email address</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="passwordFeild" ngModel required #passwordFeild="ngModel">
+            <div class="form-text" *ngIf="passwordFeild.touched && !passwordFeild.valid">Enter Password</div>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" name="termFeild" ngModel required>
+            <label class="form-check-label" for="exampleCheck1">Agree to Terms</label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
+    </form>
+</div>
