@@ -1,0 +1,49 @@
+<div class="container">
+
+    <h2 style="text-align:center">Forms in Angular - Reactive Forms</h2>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="postData();">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" formControlName="emailAddress">
+            <span
+                *ngIf="checkoutForm.get('emailAddress')!.touched && checkoutForm.get('emailAddress')!.hasError('required')">Enter
+                Email
+                Address</span>
+            <span
+                *ngIf="checkoutForm.get('emailAddress')!.touched && checkoutForm.get('emailAddress')!.hasError('email')">Enter
+                valid Email
+                Address</span>
+            <!-- <span
+                *ngIf="checkoutForm.get('emailAddress')!.touched && checkoutForm.get('emailAddress')!.hasError('minlength')">Minimum
+                5 characters required</span> -->
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Quantity</label>
+            <input type="text" class="form-control" formControlName="quantityFeild">
+            <span
+                *ngIf="checkoutForm.get('quantityFeild')!.touched && checkoutForm.get('quantityFeild')!.hasError('required')">Enter
+                Quantity</span>
+        </div>
+
+        <!--Check button-->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" formControlName="terms">
+            <label class="form-check-label" for="exampleCheck1">Agree to terms</label>
+        </div>
+
+        <!--Add your Hobbbies using FormArray-->
+
+        <div formArrayName="hobbies">
+            <div class="mt-2 mb-2">
+                <button type="button" class="btn btn-warning" (click)="onAddHobby()">Add Hobbies</button>
+                <div class="form-group mt-2 " *ngFor="let hobby of hobbyControls; let i = index">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+            </div>
+        </div>
+
+        <!--Submit Form-->
+        <button type="submit" class="btn btn-primary" [disabled]="!checkoutForm.valid">Checkout</button>
+    </form>
+</div>
