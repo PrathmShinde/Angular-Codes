@@ -1,0 +1,5 @@
+
+
+Use of view child
+1.Using ViewChild with Directives
+2.Using ViewChild with Child Components
